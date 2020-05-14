@@ -1,0 +1,63 @@
+<div class="row text-center mt-2">
+
+
+  <!-- Boutons de navigation du calendrier -->
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div (viewDateChange)="closeOpenMonthViewDay()" [(viewDate)]="viewDate"
+           [view]="view"
+           class="btn btn-primary"
+           mwlCalendarPreviousView
+      >
+        Précédent
+      </div>
+
+      <div [(viewDate)]="viewDate" class="btn btn-outline-secondary" mwlCalendarToday>Aujourd'hui</div>
+      <div
+        (viewDateChange)="closeOpenMonthViewDay()"
+        [(viewDate)]="viewDate"
+        [view]="view"
+        class="btn btn-primary"
+        mwlCalendarNextView
+      >
+        Suivant
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Affichage adaptative de la date en fonction de la vue -->
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  </div>
+
+
+  <!-- Boutons pour choisir le type de vue du calendrier -->
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+        class="btn btn-primary"
+      >
+        Mois
+      </div>
+      <div
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+        class="btn btn-primary"
+      >
+        Semaine
+      </div>
+      <div
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+        class="btn btn-primary"
+      >
+        Jour
+      </div>
+    </div>
+  </div>
+
+
+</div>
