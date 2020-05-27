@@ -97,7 +97,7 @@
 <div class="row pb-2 bg-dark">
   <div class="col-9 col-md-4">
     <!-- Liste déroulante des docteurs pour filtrer les rendez-vous en fonction du docteur sélectionné -->
-    <select #doctorSelect (ngModelChange)="onSelectDoctorChange()" [(ngModel)]="selectedDoctor"
+    <select #doctorSelect (change)="onSelect()" [(ngModel)]="selectedDoctor"
             class="custom-select form-control">
       <option disabled selected value="">Filtre docteur</option>
       <option *ngFor="let doctor of doctors" [ngValue]="doctor">

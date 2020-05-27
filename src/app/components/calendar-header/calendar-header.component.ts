@@ -15,20 +15,17 @@ export class CalendarHeaderComponent implements OnInit {
   @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   private CalendarView = CalendarView;
-  @Input()
-  view: CalendarView;
-  @Input()
-  viewDate: Date;
-  @Input()
-  activeDayIsOpen: boolean;
-  @Output()
-  viewDateChange: EventEmitter<Date> = new EventEmitter<Date>();
-  @Output()
-  viewChange: EventEmitter<CalendarView> = new EventEmitter<CalendarView>();
-  @Output()
-  activeDayIsOpenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   private doctors: Doctor[] = [];
   private selectedDoctor: Doctor;
+
+  @Input() view: CalendarView;
+  @Input() viewDate: Date;
+  @Input() activeDayIsOpen: boolean;
+
+  @Output() viewDateChange: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() viewChange: EventEmitter<CalendarView> = new EventEmitter<CalendarView>();
+  @Output() activeDayIsOpenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 
   constructor(private _doctorService: DoctorService,
               private modal: NgbModal,
@@ -58,8 +55,12 @@ export class CalendarHeaderComponent implements OnInit {
     this.activeDayIsOpenChange.emit(this.activeDayIsOpen);
   }
 
-  onSelectDoctorChange() {
+  onSelectDoctorChange(doctor: Doctor) {
     this.doctorSelectedService.sendDoctor(this.selectedDoctor);
   }
 
+  onSelect() {
+    console.log("select");
+    this.doctorSelectedService.sendDoctor(this.selectedDoctor);
+  }
 }
