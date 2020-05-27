@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <div *ngIf="!this.selectedSchedule" class="text-danger mb-2">
+      Veuillez choisir un horaire pour votre rendez-vous.
+    </div>
+
+    <table (scheduleChange)="onScheduleChange($event)" appSelectableTable class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Horaire</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let schedule of schedules" id="{{ schedule.unformated }}">
+        <td>{{ schedule.date | date: "EEEE d LLLL y" :"fr-fr" : "fr" }}</td>
+        <td>{{ schedule.time }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-between">
+  <button (click)="stepper.previous()" class="btn btn-primary">Précédant</button>
+  <button (click)="stepper.next()" [disabled]="!selectedSchedule" class="btn btn-primary">Suivant</button>
+</div>

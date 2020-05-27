@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="form-group">
+      <label for="selectDoctor">Docteur</label>
+      <select [(ngModel)]="selectedDoctor" class="form-control" id="selectDoctor" required>
+        <option disabled selected value="">Sélectionner un docteur</option>
+        <option *ngFor="let doctor of doctors" [ngValue]="doctor">
+          Dr {{ doctor.lastName | uppercase}} {{ doctor.firstName | titlecase }}
+        </option>
+      </select>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input [value]="selectedDoctor ? selectedDoctor.firstName : ''" class="form-control" id="firstName" readonly
+                 type="text">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="lastName">Nom</label>
+          <input [value]="selectedDoctor ? selectedDoctor.lastName : ''" class="form-control" id="lastName" readonly
+                 type="text">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="speciality">Spécialité</label>
+          <input [value]="selectedDoctor ? selectedDoctor.speciality : ''" class="form-control" id="speciality" readonly
+                 type="text">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="address">Adresse</label>
+          <input [value]="selectedDoctor ? selectedDoctor.address : ''" class="form-control" id="address" readonly
+                 type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-end">
+  <button (click)="onSubmit()" [disabled]="!selectedDoctor" class="btn btn-primary" type="button">Suivant</button>
+</div>

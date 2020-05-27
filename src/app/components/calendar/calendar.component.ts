@@ -4,7 +4,7 @@ import {CalendarView} from "angular-calendar";
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.sass']
 })
 export class CalendarComponent implements OnInit {
 
@@ -16,6 +16,14 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onViewDateChange(viewDate: Date) {
+    this.viewDate = viewDate;
+  }
+
+  onActiveDayIsOpenChange(isOpen: boolean) {
+    this.activeDayIsOpen = isOpen;
   }
 
 }

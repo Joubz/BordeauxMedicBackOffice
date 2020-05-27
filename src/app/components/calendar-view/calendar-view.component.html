@@ -1,35 +1,61 @@
-<div [ngSwitch]="view">
+<div [ngSwitch]="_view">
+
+  <!-- Calendrier au mois -->
   <mwl-calendar-month-view
     (dayClicked)="dayClicked($event.day)"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     *ngSwitchCase="CalendarView.Month"
     [activeDayIsOpen]="activeDayIsOpen"
+    [locale]="locale"
     [events]="events"
     [refresh]="refresh"
-    [viewDate]="viewDate"
+    [viewDate]="_viewDate"
+    [weekStartsOn]="weekStartsOn"
   >
   </mwl-calendar-month-view>
 
 
+  <!-- Calendrier à la semaine -->
   <mwl-calendar-week-view
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     *ngSwitchCase="CalendarView.Week"
     [events]="events"
     [refresh]="refresh"
-    [viewDate]="viewDate"
+    [locale]="locale"
+    [viewDate]="_viewDate"
   >
   </mwl-calendar-week-view>
 
 
+  <!-- Calendrier à la journée -->
   <mwl-calendar-day-view
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     *ngSwitchCase="CalendarView.Day"
     [events]="events"
     [refresh]="refresh"
-    [viewDate]="viewDate"
+    [viewDate]="_viewDate"
   >
   </mwl-calendar-day-view>
+
 </div>
+
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button (click)="close()" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-appointment-form></app-appointment-form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="close()" class="btn btn-outline-secondary" type="button">
+      OK
+    </button>
+  </div>
+</ng-template>

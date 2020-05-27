@@ -1,11 +1,14 @@
 <app-calendar-header
-  [i_activeDayIsOpen]="activeDayIsOpen"
-  [i_viewDate]="viewDate"
-  [i_view]="view"
+  (activeDayIsOpenChange)="onActiveDayIsOpenChange($event)"
+  (viewDateChange)="onViewDateChange($event)"
+  [(view)]="view"
+  [activeDayIsOpen]="activeDayIsOpen"
+  [viewDate]="viewDate"
 ></app-calendar-header>
 
 <app-calendar-view
   [i_activeDayIsOpen]="activeDayIsOpen"
-  [i_viewDate]="viewDate"
-  [i_view]="view">
+  [viewDate]="viewDate"
+  [view]="view"
+>
 </app-calendar-view>

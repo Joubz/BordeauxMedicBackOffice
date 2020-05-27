@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="bs-stepper" id="stepper1">
+    <div class="bs-stepper-header">
+
+      <div class="step" data-target="#doctor-part">
+        <button aria-controls="logins-part" class="step-trigger" id="doctor-part-trigger" role="tab" type="button">
+          <span class="bs-stepper-circle">1</span>
+          <span class="bs-stepper-label">Docteur</span>
+        </button>
+      </div>
+      <div class="line"></div>
+
+
+      <div class="step" data-target="#schedule-part">
+        <button aria-controls="information-part" class="step-trigger" id="schedule-part-trigger" role="tab"
+                type="button">
+          <span class="bs-stepper-circle">2</span>
+          <span class="bs-stepper-label">Horaire</span>
+        </button>
+      </div>
+      <div class="line"></div>
+
+
+      <div class="step" data-target="#patient-part">
+        <button aria-controls="information-part" class="step-trigger" id="patient-part-trigger" role="tab"
+                type="button">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label">Patient</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="bs-stepper-content">
+      <form>
+
+        <div class="content" id="doctor-part">
+          <app-doctor-sub-form (doctorFormChange)="onDoctorFormChange($event)"
+                               [stepper]="stepper"></app-doctor-sub-form>
+        </div>
+
+
+        <div class="content" id="schedule-part">
+          <app-schedule-sub-form (scheduleChange)="onScheduleFormChange($event)" [doctor]="doctor"
+                                 [stepper]="stepper"></app-schedule-sub-form>
+        </div>
+
+
+        <div class="content" id="patient-part">
+          <app-patient-sub-form (patientChange)="onPatientFormChange($event)"
+                                [stepper]="stepper"></app-patient-sub-form>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de confirmation du rendez-vous -->
+<ng-template #modalContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Souhaitez-vous confirmer ce rendez-vous ?</p>
+  </div>
+  <div class="modal-footer">
+    <button (click)="onConfirm()" class="btn btn-outline-primary" type="button">Confirmer</button>
+  </div>
+</ng-template>
+
